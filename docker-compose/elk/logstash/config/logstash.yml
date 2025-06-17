@@ -1,0 +1,5 @@
+http.host: 0.0.0.0
+node.name: logstash01
+xpack.monitoring.elasticsearch.hosts:
+- https://es:9200
+xpack.monitoring.enabled: ${xpack.monitoring.enabled}
