@@ -1,0 +1,36 @@
+logging.level: info
+logging.to_files: false
+
+filebeat.inputs:
+  # - type: filestream
+  #   id: default-filestream
+  #   paths:
+  #     - ingest_data/*.log
+  - type: log
+    enabled: true
+    paths:
+      - '/logs/*.log'
+
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      hints.enabled: true
+
+processors:
+- add_docker_metadata: ~
+
+setup.kibana:
+  host: ${KIBANA_HOSTS}
+  username: ${ELASTIC_USER}
+  password: ${ELASTIC_PASSWORD} 
+
+output.elasticsearch:
+  hosts: ${ELASTIC_HOSTS}
+  username: ${ELASTIC_USER}
+  password: ${ELASTIC_PASSWORD}
+  ssl:
+    enabled: true
+    certificate_authorities: ${CA_CERT}
+
+# output.logstash:
+#   hosts: ${LOGSTASH_HOSTS}
