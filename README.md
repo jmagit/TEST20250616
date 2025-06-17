@@ -139,13 +139,13 @@ Comando:
 
     docker run -d -p 9090:9090 --network testing --name prometheus -v ./config-dir/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 
-#### Influxdb (Monitorización)
-
-    docker run -d --name influxdb --network testing -p 8086:8086 -e INFLUXDB_DB=jmeter influxdb:1.11
-
 #### Grafana (Monitorización)
 
     docker run -d -p 3000:3000 --network testing --name grafana grafana/grafana
+
+#### Influxdb (Monitorización)
+
+    docker run -d --name influxdb --network testing -p 8086:8086 -e INFLUXDB_DB=jmeter influxdb:1.11
 
 #### Zipkin (Trazabilidad)
 
