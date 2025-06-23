@@ -1,0 +1,50 @@
+services:
+  influxdb:
+    hostname: jmeter-influxdb
+    image: influxdb:1.11
+    ports:
+      - 8086:8086
+    environment:
+      - INFLUXDB_DB=jmeter
+    networks:
+      - testing
+
+  grafana:
+    hostname: jmeter-grafana
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    depends_on:
+      - influxdb
+    networks:
+      - testing
+
+  slave-1:
+    hostname: jmeter-slave-1
+    image: jamarton/jmeter:5.6
+    command: -s
+    networks:
+      - testing
+
+  slave-2:
+    hostname: jmeter-slave-2
+    image: jamarton/jmeter:5.6
+    command: -s
+    networks:
+      - testing
+
+  master:
+    hostname: jmeter-master
+    image: jamarton/jmeter:5.6
+    environment:
+      - JMETER_REMOTE_HOSTS=jmeter-slave-1,jmeter-slave-2
+    volumes:
+      - ${TEST_DIR}:/local
+    working_dir: /local
+    command: -master
+    networks:
+      - testing
+
+networks:
+  testing:
+    external: true
