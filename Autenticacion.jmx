@@ -27,7 +27,7 @@
         </collectionProp>
       </Arguments>
       <hashTree/>
-      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+      <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults">
         <intProp name="HTTPSampler.connect_timeout">5000</intProp>
         <intProp name="HTTPSampler.response_timeout">30000</intProp>
         <stringProp name="HTTPSampler.domain">${host}</stringProp>
@@ -39,7 +39,7 @@
         <stringProp name="HTTPSampler.implementation"></stringProp>
       </ConfigTestElement>
       <hashTree/>
-      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Gestor de Cabecera HTTP" enabled="true">
+      <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Gestor de Cabecera HTTP">
         <collectionProp name="HeaderManager.headers">
           <elementProp name="Accept-Language" elementType="Header">
             <stringProp name="Header.name">Accept-Language</stringProp>
@@ -62,7 +62,7 @@
       <hashTree/>
       <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="Acceso denegado" enabled="false"/>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Authenticated: false" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Authenticated: false">
           <stringProp name="HTTPSampler.path">/api/auth</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -83,7 +83,7 @@
           </JSONPathAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="blog-401" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="blog-401">
           <stringProp name="HTTPSampler.path">/api/blog/1</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -94,7 +94,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Aserción de Respuesta" enabled="true">
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Aserción de Respuesta">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="51509">401</stringProp>
             </collectionProp>
@@ -109,7 +109,7 @@
       </hashTree>
       <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="Acceso permitido" enabled="false"/>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Authenticated: true" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Authenticated: true">
           <stringProp name="HTTPSampler.path">/api/auth</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -120,7 +120,7 @@
           </elementProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion: isAuthenticated = true">
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion: isAuthenticated = true" enabled="true">
             <stringProp name="JSON_PATH">$.isAuthenticated</stringProp>
             <stringProp name="EXPECTED_VALUE">true</stringProp>
             <boolProp name="JSONVALIDATION">true</boolProp>
@@ -129,7 +129,7 @@
             <boolProp name="ISREGEX">false</boolProp>
           </JSONPathAssertion>
           <hashTree/>
-          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion: usr = ${usr}">
+          <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion: usr = ${usr}" enabled="true">
             <stringProp name="JSON_PATH">$.usr</stringProp>
             <stringProp name="EXPECTED_VALUE">${usr}</stringProp>
             <boolProp name="JSONVALIDATION">true</boolProp>
@@ -139,7 +139,7 @@
           </JSONPathAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="blog-200" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="blog-200">
           <stringProp name="HTTPSampler.path">/api/blog/1</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -151,7 +151,7 @@
         </HTTPSamplerProxy>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="FORM - Cookie">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="FORM - Cookie" enabled="false">
         <intProp name="ThreadGroup.num_threads">7</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <longProp name="ThreadGroup.duration">60</longProp>
@@ -164,13 +164,13 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
-        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager">
           <collectionProp name="CookieManager.cookies"/>
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
           <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
         </CookieManager>
         <hashTree/>
-        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+        <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config">
           <stringProp name="filename">recursos/usuarios.csv</stringProp>
           <stringProp name="fileEncoding"></stringProp>
           <stringProp name="variableNames">usr,pwd</stringProp>
@@ -182,7 +182,7 @@
           <stringProp name="shareMode">shareMode.all</stringProp>
         </CSVDataSet>
         <hashTree/>
-        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Acceso sin autenticar" enabled="true">
+        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Acceso sin autenticar">
           <collectionProp name="ModuleController.node_path">
             <stringProp name="-509356230">Plan de Pruebas</stringProp>
             <stringProp name="342062881">Autenticacion</stringProp>
@@ -307,37 +307,6 @@
             <hashTree/>
           </hashTree>
         </hashTree>
-        <SmtpSampler guiclass="SmtpSamplerGui" testclass="SmtpSampler" testname="success - ${success}" enabled="false">
-          <stringProp name="SMTPSampler.server">localhost</stringProp>
-          <stringProp name="SMTPSampler.serverPort">1025</stringProp>
-          <stringProp name="SMTPSampler.mailFrom">support@example.com</stringProp>
-          <stringProp name="SMTPSampler.replyTo">messages-noreply@example.com</stringProp>
-          <stringProp name="SMTPSampler.receiverTo">support@example.com</stringProp>
-          <stringProp name="SMTPSampler.receiverCC"></stringProp>
-          <stringProp name="SMTPSampler.receiverBCC"></stringProp>
-          <stringProp name="SMTPSampler.subject">Logim incorrecto</stringProp>
-          <stringProp name="SMTPSampler.suppressSubject">false</stringProp>
-          <stringProp name="SMTPSampler.include_timestamp">false</stringProp>
-          <stringProp name="SMTPSampler.message">username: ${usr}</stringProp>
-          <stringProp name="SMTPSampler.plainBody">false</stringProp>
-          <stringProp name="SMTPSampler.attachFile"></stringProp>
-          <stringProp name="SMTPSampler.useSSL">false</stringProp>
-          <stringProp name="SMTPSampler.useStartTLS">false</stringProp>
-          <stringProp name="SMTPSampler.trustAllCerts">false</stringProp>
-          <stringProp name="SMTPSampler.enforceStartTLS">false</stringProp>
-          <stringProp name="SMTPSampler.useLocalTrustStore">false</stringProp>
-          <stringProp name="SMTPSampler.trustStoreToUse"></stringProp>
-          <stringProp name="SMTPSampler.tlsProtocols"></stringProp>
-          <boolProp name="SMTPSampler.use_eml">false</boolProp>
-          <stringProp name="SMTPSampler.emlMessageToSend"></stringProp>
-          <stringProp name="SMTPSampler.useAuth">false</stringProp>
-          <stringProp name="SMTPSampler.password"></stringProp>
-          <stringProp name="SMTPSampler.username"></stringProp>
-          <stringProp name="SMTPSampler.messageSizeStatistics">false</stringProp>
-          <stringProp name="SMTPSampler.enableDebug">true</stringProp>
-          <collectionProp name="SMTPSampler.headerFields"/>
-        </SmtpSampler>
-        <hashTree/>
         <TestAction guiclass="TestActionGui" testclass="TestAction" testname="ThinkTime1s" enabled="false">
           <intProp name="ActionProcessor.action">1</intProp>
           <intProp name="ActionProcessor.target">0</intProp>
@@ -350,7 +319,7 @@
           </UniformRandomTimer>
           <hashTree/>
         </hashTree>
-        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Solo autenticados" enabled="true">
+        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Solo autenticados">
           <collectionProp name="ModuleController.node_path">
             <stringProp name="-509356230">Plan de Pruebas</stringProp>
             <stringProp name="342062881">Autenticacion</stringProp>
@@ -360,7 +329,7 @@
         <hashTree/>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Cierra Sesison" enabled="true"/>
         <hashTree>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Logout" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Logout">
             <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
             <stringProp name="HTTPSampler.path">/api/logout</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -373,20 +342,13 @@
           </HTTPSamplerProxy>
           <hashTree/>
         </hashTree>
-        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Acceso sin autenticar" enabled="true">
+        <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Acceso sin autenticar">
           <collectionProp name="ModuleController.node_path">
             <stringProp name="-509356230">Plan de Pruebas</stringProp>
             <stringProp name="342062881">Autenticacion</stringProp>
             <stringProp name="-90276995">Acceso denegado</stringProp>
           </collectionProp>
         </ModuleController>
-        <hashTree/>
-        <KeystoreConfig guiclass="TestBeanGUI" testclass="KeystoreConfig" testname="Keystore Configuration" enabled="true">
-          <stringProp name="clientCertAliasVarName">certAlias</stringProp>
-          <stringProp name="endIndex">-1</stringProp>
-          <stringProp name="preload">True</stringProp>
-          <stringProp name="startIndex">0</stringProp>
-        </KeystoreConfig>
         <hashTree/>
       </hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="API - Cookie" enabled="false">
@@ -520,8 +482,8 @@
         </ModuleController>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="API - Access Token" enabled="false">
-        <intProp name="ThreadGroup.num_threads">5</intProp>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="API - Access Token">
+        <intProp name="ThreadGroup.num_threads">10</intProp>
         <intProp name="ThreadGroup.ramp_time">1</intProp>
         <longProp name="ThreadGroup.duration">60</longProp>
         <longProp name="ThreadGroup.delay">5</longProp>
@@ -586,7 +548,7 @@
             </collectionProp>
           </HeaderManager>
           <hashTree/>
-          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login" enabled="true">
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login - ${usr}">
             <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
             <stringProp name="HTTPSampler.path">/api/login</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
@@ -639,7 +601,7 @@
         </hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Solo autenticados"/>
         <hashTree>
-          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Gestor de Cabecera HTTP" enabled="true">
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Gestor de Cabecera HTTP">
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
@@ -672,13 +634,20 @@
         </elementProp>
       </ThreadGroup>
       <hashTree>
+        <KeystoreConfig guiclass="TestBeanGUI" testclass="KeystoreConfig" testname="Keystore Configuration">
+          <stringProp name="clientCertAliasVarName">certAlias</stringProp>
+          <stringProp name="endIndex">-1</stringProp>
+          <stringProp name="preload">True</stringProp>
+          <stringProp name="startIndex">0</stringProp>
+        </KeystoreConfig>
+        <hashTree/>
         <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="Gestor de Cookies HTTP" enabled="true">
           <collectionProp name="CookieManager.cookies"/>
           <boolProp name="CookieManager.clearEachIteration">false</boolProp>
           <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
         </CookieManager>
         <hashTree/>
-        <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="Gestor de Autorización HTTP" enabled="true">
+        <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="Gestor de Autorización HTTP">
           <collectionProp name="AuthManager.auth_list">
             <elementProp name="" elementType="Authorization">
               <stringProp name="Authorization.url">http://localhost:9990</stringProp>
@@ -697,7 +666,7 @@
           <stringProp name="ConfigTestElement.password">cursos</stringProp>
         </ConfigTestElement>
         <hashTree/>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Petición HTTP" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Petición HTTP">
           <boolProp name="HTTPSampler.concurrentDwn">true</boolProp>
           <intProp name="HTTPSampler.concurrentPool">5</intProp>
           <stringProp name="HTTPSampler.domain">localhost</stringProp>
@@ -883,7 +852,7 @@
         <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
-      <ConfigTestElement guiclass="SimpleConfigGui" testclass="ConfigTestElement" testname="Elemento de Configuración Simple"/>
+      <ConfigTestElement guiclass="SimpleConfigGui" testclass="ConfigTestElement" testname="Elemento de Configuración Simple" enabled="true"/>
       <hashTree/>
     </hashTree>
   </hashTree>
