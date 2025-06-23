@@ -50,6 +50,19 @@
 
     docker run -d --name web-for-testing -p 8181:8181 jamarton/web-for-testing
 
+#### Pruebas de rendimiento distribuidas
+
+Stack:
+
+- JMeter (maestro)
+- JMeter (servidores remotos)
+- Influxdb (Monitorización)
+- Grafana (Monitorización)
+
+Comando:
+
+      cd docker-compose\jmeter && docker compose up -d
+
 ### Bases de datos
 
 #### MySQL
