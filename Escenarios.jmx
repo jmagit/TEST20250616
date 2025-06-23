@@ -67,26 +67,7 @@
         </collectionProp>
       </HeaderManager>
       <hashTree/>
-      <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="Configuración de la Conexión JDBC">
-        <boolProp name="autocommit">true</boolProp>
-        <stringProp name="checkQuery"></stringProp>
-        <stringProp name="connectionAge">5000</stringProp>
-        <stringProp name="connectionProperties"></stringProp>
-        <stringProp name="dataSource">SakilaDB</stringProp>
-        <stringProp name="dbUrl">jdbc:mysql://localhost:3306/sakila</stringProp>
-        <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
-        <stringProp name="initQuery"></stringProp>
-        <boolProp name="keepAlive">true</boolProp>
-        <stringProp name="password">root</stringProp>
-        <stringProp name="poolMax">0</stringProp>
-        <boolProp name="preinit">false</boolProp>
-        <stringProp name="timeout">10000</stringProp>
-        <stringProp name="transactionIsolation">DEFAULT</stringProp>
-        <stringProp name="trimInterval">60000</stringProp>
-        <stringProp name="username">root</stringProp>
-      </JDBCDataSource>
-      <hashTree/>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Scenario 1">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Scenario 1" enabled="false">
         <stringProp name="TestPlan.comments">Virtual Users Running Scenario 1. 
 Make test last 1 minute (see Scheduler)</stringProp>
         <intProp name="ThreadGroup.num_threads">1</intProp>
@@ -164,19 +145,41 @@ Make test last 1 minute (see Scheduler)</stringProp>
           <stringProp name="protocol">${schema}</stringProp>
         </AccessLogSampler>
         <hashTree/>
-        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Petición JDBC">
-          <stringProp name="dataSource">SakilaDB</stringProp>
-          <stringProp name="query">SELECT * FROM `sakila`.`actor` ORDER BY `actor_id`</stringProp>
-          <stringProp name="queryArguments"></stringProp>
-          <stringProp name="queryArgumentsTypes"></stringProp>
-          <stringProp name="queryTimeout"></stringProp>
-          <stringProp name="queryType">Select Statement</stringProp>
-          <stringProp name="resultSetHandler">Store as String</stringProp>
-          <stringProp name="resultSetMaxRows"></stringProp>
-          <stringProp name="resultVariable"></stringProp>
-          <stringProp name="variableNames"></stringProp>
-        </JDBCSampler>
-        <hashTree/>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="JDBC"/>
+        <hashTree>
+          <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="Configuración de la Conexión JDBC">
+            <boolProp name="autocommit">true</boolProp>
+            <stringProp name="checkQuery"></stringProp>
+            <stringProp name="connectionAge">5000</stringProp>
+            <stringProp name="connectionProperties"></stringProp>
+            <stringProp name="dataSource">SakilaDB</stringProp>
+            <stringProp name="dbUrl">jdbc:mysql://localhost:3306/sakila</stringProp>
+            <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+            <stringProp name="initQuery"></stringProp>
+            <boolProp name="keepAlive">true</boolProp>
+            <stringProp name="password">root</stringProp>
+            <stringProp name="poolMax">0</stringProp>
+            <boolProp name="preinit">false</boolProp>
+            <stringProp name="timeout">10000</stringProp>
+            <stringProp name="transactionIsolation">DEFAULT</stringProp>
+            <stringProp name="trimInterval">60000</stringProp>
+            <stringProp name="username">root</stringProp>
+          </JDBCDataSource>
+          <hashTree/>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Petición JDBC">
+            <stringProp name="dataSource">SakilaDB</stringProp>
+            <stringProp name="query">SELECT * FROM `sakila`.`actor` ORDER BY `actor_id`</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="queryType">Select Statement</stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+            <stringProp name="resultSetMaxRows"></stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="variableNames"></stringProp>
+          </JDBCSampler>
+          <hashTree/>
+        </hashTree>
         <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Servicios REST"/>
         <hashTree>
           <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Gestor de Cabecera HTTP">
@@ -357,9 +360,79 @@ if (&quot;1&quot;.equals(type)) {
 	IsSuccess = false;
 }
 return Parameters;</stringProp>
-          <stringProp name="BeanShellSampler.parameters">2 OK</stringProp>
+          <stringProp name="BeanShellSampler.parameters">1 OK</stringProp>
         </BeanShellSampler>
         <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Scenario 2">
+        <intProp name="ThreadGroup.num_threads">5</intProp>
+        <intProp name="ThreadGroup.ramp_time">1</intProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Controlador Bucle">
+          <stringProp name="LoopController.loops">3</stringProp>
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+        </elementProp>
+      </ThreadGroup>
+      <hashTree>
+        <IncludeController guiclass="IncludeControllerGui" testclass="IncludeController" testname="Incluir" enabled="false"/>
+        <hashTree/>
+        <RunTime guiclass="RunTimeGui" testclass="RunTime" testname="Controlador Tiempo de Ejecución">
+          <stringProp name="RunTime.seconds">1</stringProp>
+        </RunTime>
+        <hashTree>
+          <RandomController guiclass="RandomControlGui" testclass="RandomController" testname="Multiples">
+            <intProp name="InterleaveControl.style">1</intProp>
+          </RandomController>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="Gestor de Cabecera HTTP">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="accept" elementType="Header">
+                  <stringProp name="Header.name">accept</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="content-type" elementType="Header">
+                  <stringProp name="Header.name">content-type</stringProp>
+                  <stringProp name="Header.value">application/json; charset=utf-8</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="api/contactos/1">
+              <stringProp name="HTTPSampler.path">api/contactos/1</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="api/contactos/2">
+              <stringProp name="HTTPSampler.path">api/contactos/2</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="api/contactos/3">
+              <stringProp name="HTTPSampler.path">api/contactos/3</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.postBodyRaw">false</boolProp>
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="Variables definidas por el Usuario">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
       </hashTree>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
